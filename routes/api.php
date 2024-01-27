@@ -19,6 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('jobs', [JobsController::class, 'store']);
-Route::get('jobs/{id}', [JobsController::class, 'show']);
-Route::delete('jobs/{id}', [JobsController::class, 'destroy']);
+Route::resource('jobs', JobsController::class);
