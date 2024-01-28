@@ -15,7 +15,7 @@ Comes with:
 - `cp .env.example .env`
 - `docker-compose exec app php artisan key:generate`
 
-Now that all containers are up, we can add `http://127.0.0.1:8080/` to check our laravel app is running
+Now that all containers are up, we can open `http://127.0.0.1:8080/` on browser to check our laravel app is running
 
 ## Endpoints
 
