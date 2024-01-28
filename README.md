@@ -7,13 +7,16 @@ Comes with:
 - web-server: `nginx`
 - database: `redis`
 
+## Requirement
+To get started, make sure you have Docker installed on your system, and then clone this repository.
+
 ## Setup
 - `git clone https://github.com/thaivanluat/rt-hw-php.git`
 - `cd rt-hw-php`
-- `docker-compose up -d`
 - `docker exec app composer install`
 - `cp .env.example .env`
 - `docker-compose exec app php artisan key:generate`
+- `docker-compose up -d`
 
 Now that all containers are up, we can open `http://127.0.0.1:8080/` on browser to check our laravel app is running
 
