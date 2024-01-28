@@ -8,7 +8,7 @@ Comes with:
 - database: `redis`
 
 ## Setup
-- `git clone git@github.com:thaivanluat/rt-hw-php.git`
+- `git clone https://github.com/thaivanluat/rt-hw-php.git`
 - `cd rt-hw-php`
 - `docker-compose up -d`
 - `docker exec app composer install`
