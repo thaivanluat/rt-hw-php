@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+    app:
+        container_name: app
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        volumes:
+            - .:/usr/src/app
+            - ./public:/usr/src/app/public
+        depends_on:
+            - db_redis
+        networks:
+            - app_network
+
+    nginx:
+        container_name: nginx
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        volumes:
+            - ./public:/usr/src/app/public
+        ports:
+            - "8080:80"
+        depends_on:
+            - app
+        environment:
+            NGINX_FPM_HOST: app
+            NGINX_ROOT: /usr/src/app/public
+        networks:
+            - app_network
+
+    db_redis:
+        container_name: db_redis
+        image: redis:latest
+        ports:
+            - "6379:6379"
+        networks:
+            - app_network
+
+    worker:
+        container_name: worker
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+            - app
+        command: php artisan queue:work
+        networks:
+            - app_network
+networks:
+    app_network:
+        driver: bridge
