@@ -43,7 +43,4 @@ COPY ./docker/php/laravel.ini /usr/local/etc/php/conf.d/laravel.ini
 
 WORKDIR /usr/src/app
 
-COPY .. /usr/src/app
-RUN composer install --optimize-autoloader --no-dev
-
 RUN chown -R www-data:www-data .
